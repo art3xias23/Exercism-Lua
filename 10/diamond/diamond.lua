@@ -6,8 +6,9 @@ matrix_half = math.floor(((matrix_size - 1) / 2))
 print("matrix half: " .. matrix_half)
 
 local full_table = {}
-add_first_half(full_table, matrix_half)
-add_second_half(full_table, matrix_half)
+add_top_left(full_table, matrix_half)
+add_bottom_left(full_table, matrix_half)
+add_middle_part(full_table)
 
 print("ft count: " .. #full_table)
 for i,v in ipairs(full_table) do
@@ -16,7 +17,7 @@ end
 
 end
 
-function add_first_half(full_table, matrix_half)
+function add_top_left(full_table, matrix_half)
     for i =1, matrix_half + 1, 1 do
             local single_row = {}
         for j = matrix_half + 1, 2, -1 do
@@ -30,10 +31,10 @@ function add_first_half(full_table, matrix_half)
     end
 end
 
-function add_second_half(full_table, matrix_half)
+function add_bottom_left(full_table, matrix_half)
     for i = matrix_half, 1, -1 do
         local single_row = {}
-        for j = 2, matrix_half+1, 1 do
+        for j = matrix_half+1, 2, -1 do
             if j == i then
                 print("Row " .. i .. " insert: " .. i) 
                 table.insert(single_row, i)
@@ -44,6 +45,17 @@ function add_second_half(full_table, matrix_half)
         end
         print("Insert row " .. i)
         table.insert(full_table, single_row)
+    end
+end
+
+function add_middle_part(full_table)
+    print("middle cnt: " .. #full_table)
+    for i = 1,#full_table,1  do
+        if (i == 1 or i == #full_table) then
+            table.insert(full_table[i], 1)
+        else
+            table.insert(full_table[i], ".")
+        end
     end
 end
 
