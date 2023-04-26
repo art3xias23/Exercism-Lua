@@ -1,2 +1,2 @@
 local diamond = require("diamond")
-diamond("B")
+print(diamond("D"))

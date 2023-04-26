@@ -19,7 +19,9 @@ local main_func =  function(letter)
         table.insert(string_table, str)
     end
 
-    return table.concat(string_table, "\n")
+    final_table = string_table
+    final_table[#final_table] = final_table[#final_table] .. "\n"
+    return table.concat(final_table, "\n")
 end
 
 function get_letter_from_number_of_letter(number_of_letter)
